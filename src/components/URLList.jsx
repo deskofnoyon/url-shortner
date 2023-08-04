@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 import DeleteUrlModal from "./DeleteUrlModal";
 import UpdateUrlModal from "./UpdateUrlModal";
 import { MdContentCopy } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const URLList = () => {
 	const [links, setLinks] = useState([]);
@@ -100,23 +101,31 @@ const URLList = () => {
 		<>
 			{links?.length > 0 && (
 				<div className="p-2 md:p-0">
-					<h2 className="text-xl font-medium mb-1 dark:text-white">URL List:</h2>
-					<div className="space-y-1 rounded">
+					<h2 className="text-xl font-medium mb-1 dark:text-white">
+						URL List:
+					</h2>
+					<div className="space-y-1 rounded grid grid-cols-1">
 						{links.map((link) => (
 							<div
 								href={link.longUrl}
 								key={link.shortId}
-								className="flex flex-col md:flex-row space-y-2 md:space-y-0 justify-between bg-white dark:bg-slate-400/40 p-3 border-2 dark:border-primary/20 rounded-md hover:border-primary duration-200
+								className="w-full flex flex-col md:flex-row space-y-2 md:space-y-0 justify-between bg-white dark:bg-slate-400/40 p-3 border-2 dark:border-primary/20 rounded-md hover:border-primary duration-200
                     "
 							>
-								<div className="dark:text-white">
-									<p className="flex space-x-1">
-										<span className="font-medium">Short URL :</span>
-										<button className="underline text-primary">{link.shortUrl}</button>
+								<div className="dark:text-white w-full">
+									<p>
+										<span className="font-medium">Short URL: </span>
+										<Link
+											to={`url/${link.shortId}`}
+											className="underline text-primary"
+										>
+											{link.shortUrl}
+										</Link>
 									</p>
-									<p className="flex space-x-1">
-										<span className="font-medium">Long URL :</span>
-										<span>{link.longUrl}</span>
+
+									<p className="">
+										<span className="font-medium">Long Url: </span>
+										{link.longUrl}
 									</p>
 								</div>
 								<div className="flex items-center space-x-1">

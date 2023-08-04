@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 import { MdContentCopy, MdOutlineContentPaste } from "react-icons/md";
 import { AiOutlineDelete } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 const URLShortner = () => {
 	const [longUrl, setLongUrl] = useState("");
@@ -29,8 +30,8 @@ const URLShortner = () => {
 
 		// Generate short URL (you can use shortid or nanoid library)
 		const shortId = generateShortId();
-		const curretProtocol = window.location.protocol
-		const curretHost = window.location.host
+		const curretProtocol = window.location.protocol;
+		const curretHost = window.location.host;
 		const shortLink = `${curretProtocol}//${curretHost.toString()}/${shortId}`;
 
 		// Get existing data from local storage
@@ -52,8 +53,10 @@ const URLShortner = () => {
 
 		// Update state with the short URL
 		setShortUrl(shortLink);
+		toast.success("Successfully Created", { position: "top-right" });
 
 		// Reset the form after submission
+		setError("");
 		setLongUrl("");
 		setPasteValue("");
 	};
@@ -92,29 +95,20 @@ const URLShortner = () => {
 		}
 	};
 
-	const handleShortUrlClick = (shortUrl) => {
-		// Redirect to the long URL when the short URL is clicked
-		const clickedId = shortUrl.split("/")[3]
-		const existingUrls = JSON.parse(localStorage.getItem("shortLinks")) || [];
-		const actualItem = existingUrls.find(link => link.shortId === clickedId)
-		
-		
-		window.open(actualItem.longUrl, "_blank")
-	};
-
 	return (
 		<>
 			<div className="mb-5">
 				<h1 className="text-3xl md:text-4xl text-center mb-5 text-primary font-bold">
 					URL Shortner
 				</h1>
-				<div className="bg-white dark:bg-slate-400/40 md:shadow-lg rounded-md p-2 md:p-5 border border-gray-100 dark:border-primary/10">
+				<div className="bg-white dark:bg-slate-400/20 backdrop-blur-lg md:shadow-lg rounded-md p-2 md:p-5 border border-gray-100 dark:border-primary/10">
 					<h1 className="text-2xl md:text-3xl font-bold text-center mb-4 dark:text-white">
 						Paste the URL to be shortened
 					</h1>
 					<form className="flex mb-2 relative" onSubmit={handleSubmit}>
 						<input
-							className={` basis-[70%] md:basis-[80%] px-3 py-3 rounded-l border  border-gray-300 outline-primary ${
+							className={` basis-[70%] md:basis-[80%] px-3 py-3 rounded-l dark:border-primary/40 border-primary/20 outline-none hover:border-primary border-2 border-r-0 dark:bg-gray-200/30 dark:text-white dark:focus:text-white
+							 ${
 								error && "border-red-400"
 							}`}
 							type="text"
@@ -126,7 +120,7 @@ const URLShortner = () => {
 							<button
 								onClick={() => setLongUrl("")}
 								type="button"
-								className="bg-white p-1 duration-100 active:scale-95 absolute right-[7.5rem] md:right-[8.5rem] top-3 text-lg"
+								className="bg-white dark:bg-transparent dark:text-whites p-1 duration-100 active:scale-95 absolute right-[7.5rem] md:right-[8.5rem] top-3 text-lg"
 							>
 								<AiOutlineDelete className="" />
 							</button>
@@ -134,7 +128,7 @@ const URLShortner = () => {
 							<button
 								onClick={handlePasteClick}
 								type="button"
-								className="bg-white p-1 duration-100 active:scale-95 absolute right-[7.5rem] md:right-[8.5rem] top-3 text-lg"
+								className="bg-white dark:bg-transparent dark:text-white p-1 duration-100 active:scale-95 absolute right-[7.5rem] md:right-[8.5rem] top-3 text-lg"
 							>
 								<MdOutlineContentPaste className="" />
 							</button>
@@ -153,21 +147,21 @@ const URLShortner = () => {
 						easy to share
 					</p>
 					{shortUrl && (
-						<div className="flex flex-col md:flex-row items-center justify-between bg-slate-100 px-2 py-2 rounded-md w-full">
+						<div className="flex flex-col items-start md:flex-row md:items-center justify-between bg-slate-100 px-2 py-2 rounded-md w-full">
 							<div className="space-x-3">
 								<span className="font-medium">Short Url:</span>
-								<button
-									onClick={() => handleShortUrlClick(shortUrl)}
-									className="underline cursor-pointer"
+								<Link
+									to={`/url/${shortUrl.split("/")[3]}`}
+									className="underline cursor-pointer text-primary"
 								>
 									{shortUrl}
-								</button>
+								</Link>
 							</div>
 
 							<button
-								onClick={() => handleCopyToClipboard(	)}
+								onClick={() => handleCopyToClipboard()}
 								title="Click copy to clipboard"
-								className="p-2 rounded bg-gray-200 hover:bg-gray-300 text-sm duration-100 active:scale-95"
+								className="ml-auto inline-block p-2 rounded bg-gray-200 hover:bg-gray-300 text-sm duration-100 active:scale-95"
 							>
 								<MdContentCopy />
 							</button>
