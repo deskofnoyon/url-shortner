@@ -120,7 +120,7 @@ const URLShortner = () => {
 							<button
 								onClick={() => setLongUrl("")}
 								type="button"
-								className="bg-white dark:bg-transparent dark:text-whites p-1 duration-100 active:scale-95 absolute right-[7.5rem] md:right-[8.5rem] top-3 text-lg"
+								className="bg-white dark:bg-transparent dark:text-white p-1 duration-100 active:scale-95 absolute right-[7.5rem] md:right-[8.5rem] top-3 text-lg"
 							>
 								<AiOutlineDelete className="" />
 							</button>
