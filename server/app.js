@@ -1,15 +1,18 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-
+const authRoute = require('./routes/v1/auth.route');
 
 // middlewares
 app.use(express.json());
 app.use(cors());
 app.set('view engine', 'ejs')
 
+// actual routes
+app.use('/api/v1/auth', authRoute);
 
-// routes
+
+// default routes   
 app.get('/', (req, res) => {
     // console.log(req.path);
     res.status(200).render('index', {
@@ -25,7 +28,7 @@ app.get('/', (req, res) => {
 
 app.get("*", (req, res) => {
     // console.log(req.url);
-    res.send("noting")
+    res.status(404).render("404")
 })
 
 

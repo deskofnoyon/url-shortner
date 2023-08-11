@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Not Found!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+
+                extend: {
+                    colors: {
+                        primary: "#0186DA",
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer components{
+            .btn {
+                @apply bg-primary hover:bg-primary/80 duration-200 px-3 py-1 rounded text-white font-semibold inline-block;
+            }
+
+            .min-h-main{
+                min-height: calc(100vh - 82px);
+            }
+        }
+      </style>
+</head>
+
+<body class="dark:bg-black">
+    <main class="flex min-h-main items-center justify-center">
+        <div class="flex items-center flex-col space-y-3">
+            <div class="flex items-center space-x-3 dark:text-gray-50   ">
+                <h1 class="text-3xl font-bold">404</h1>
+                <span>|</span>
+                <p>Page Not Found!</p>
+            </div>
+            <a href="/" class="btn">Back Home</a>
+        </div>
+    </main>
+</body>
+
+</html>

@@ -39,28 +39,28 @@
         </nav>
     </header>
     <main class="px-2">
-        <div class="bg-gray-100/60 w-full max-w-6xl mx-auto p-2 rounded-md mb-3">
-            <p>Api Root</p>
+        <div class="bg-gray-100/60 dark:bg-gray-600/40 w-full max-w-6xl mx-auto p-2 rounded-md mb-3">
+            <p class="dark:text-gray-100">Api Root</p>
         </div>
-        <div class="w-full max-w-6xl bg-gray-100/60 rounded-md mx-auto p-3">
-            <p class="font-semibold">
+        <div class="w-full max-w-6xl bg-gray-100/60 dark:bg-gray-600/40 rounded-md mx-auto p-3">
+            <p class="font-semibold dark:text-gray-50">
                 <%= protocol %>
                     <%= status %>
                         <%= statusMessage %>
             </p>
-            <p>
+            <p class="dark:text-gray-50">
                 <span class="font-semibold">Allow:</span>
                 <%= allow %>
             </p>
-            <p>
+            <p class="dark:text-gray-50">
                 <span class="font-semibold">METHOD:</span>
                 <%= req.method %>
             </p>
-            <p>
+            <p class="dark:text-gray-50">
                 <span class="font-semibold">Content-Type:</span>
                 <%= contentType %>
             </p>
-            <p>
+            <p class="dark:text-gray-50">
                 <span class="font-semibold">url:</span>
                 <a class="underline" href="<%= url %>" target="_blank">
                     <%= url %>
@@ -70,7 +70,7 @@
 
         <div class="flex justify-center mt-10">
             <div
-                class="w-full max-w-lg shadow-lg space-y-3 p-3 rounded-md flex flex-col items-center dark:bg-slate-700/40 backdrop-blur border-primary/50 border-2">
+                class="w-full max-w-lg shadow-lg space-y-3 p-3 rounded-md flex flex-col items-center dark:bg-slate-800/40 backdrop-blur border-primary/50 border-2">
                 <h1 class="text-3xl text-center font-bold dark:text-white">URL Shortner</h1>
                 <p class="text-center dark:text-gray-300">
                     URL Shortner is a free tool to shorten URLs and generate short links. URL shortener allows to create
