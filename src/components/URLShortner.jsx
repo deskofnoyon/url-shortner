@@ -101,6 +101,7 @@ const URLShortner = () => {
 				<h1 className="text-3xl md:text-4xl text-center mb-5 text-primary font-bold">
 					URL Shortner
 				</h1>
+				
 				<div className="bg-white dark:bg-slate-400/20 backdrop-blur-lg md:shadow-lg rounded-md p-2 md:p-5 border border-gray-100 dark:border-primary/10">
 					<h1 className="text-2xl md:text-3xl font-bold text-center mb-4 dark:text-white">
 						Paste the URL to be shortened
